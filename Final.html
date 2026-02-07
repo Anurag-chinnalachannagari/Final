@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Day For Visishta 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #330000, #800040);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.section {
+    padding: 30px 15px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+.slideshow {
+    position: relative;
+    width: 90%;
+    max-width: 320px;
+    height: 420px;
+    margin: 20px auto;
+}
+
+.slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.message {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: white;
+    color: #800040;
+    margin-top: 20px;
+}
+
+.glow {
+    font-size: 22px;
+    margin-top: 25px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff4da6; }
+    to { text-shadow: 0 0 20px #ff99cc; }
+}
+
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: 18px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="section">
+    <h1>🌹 Happy Rose Day, Visishta 🌹</h1>
+    <button onclick="startLove()">Open Your Garden</button>
+</div>
+
+<div id="loveSection" style="display:none;" class="section">
+
+    <div class="slideshow">
+        <img src="photo1.jpg" class="slide">
+        <img src="photo2.jpg" class="slide">
+    </div>
+
+    <div class="message">
+        If I had a rose for every time you made me smile,  
+        I’d have a whole garden by now. 🌹  
+
+        You are the most beautiful part of my life,  
+        and I’m so lucky to call you mine.  
+
+        Today I’m sending you a rose…  
+        but honestly, you’re the real one blooming in my heart. ❤️  
+
+        And just like the thorns protect the rose,  
+        I promise I will always protect you —  
+        whether I am beside you or miles away from you.  
+
+        Your happiness will always be guarded by my love. 💖
+    </div>
+
+    <div class="glow">
+        I Love You, Visishta ❤️
+    </div>
+
+    <button onclick="celebrateLove()">
+        Will You Always Be Mine? 💍
+    </button>
+
+    <h3 style="margin-top:20px;">Forever Yours,<br>Anurag</h3>
+
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-background-112197.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startLove() {
+    document.getElementById("loveSection").style.display = "block";
+    document.getElementById("bgMusic").play();
+    createPetals();
+    startSlideshow();
+}
+
+function createPetals() {
+    setInterval(function() {
+        var petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.innerHTML = "🌹";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 6000);
+    }, 400);
+}
+
+function startSlideshow() {
+    var slides = document.getElementsByClassName("slide");
+    var index = 0;
+    slides[index].style.opacity = 1;
+    setInterval(function() {
+        slides[index].style.opacity = 0;
+        index = (index + 1) % slides.length;
+        slides[index].style.opacity = 1;
+    }, 4000);
+}
+
+function celebrateLove() {
+    startFireworks();
+    alert("Forever and Always ❤️");
+}
+
+/* Fireworks */
+var canvas = document.getElementById("fireworks");
+var ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks() {
+    setInterval(function() {
+        for (let i = 0; i < 20; i++) {
+            ctx.beginPath();
+            ctx.arc(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                3,
+                0,
+                Math.PI * 2
+            );
+            ctx.fillStyle = "hsl(" + Math.random() * 360 + ",100%,60%)";
+            ctx.fill();
+        }
+    }, 200);
+}
+</script>
+
+</body>
+</html>
